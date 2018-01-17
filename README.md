@@ -11,7 +11,7 @@ Three possible use cases:
 These will return `null` if the type is not recognized.
 If recognized, a JSON object will be returned of the form:
 
-``json
+```json
 {ext: 'gif', mime: 'image/gif'}
 ```
 
