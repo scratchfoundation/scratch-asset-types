@@ -3,7 +3,7 @@
 const typesList = require('./lib/typeslist');
 const readChunk = require('read-chunk');
 
-module.exports = input => {
+module.exports.bufferCheck = input => {
     const buf = (input instanceof Uint8Array) ? input : new Uint8Array(input);
 
     if (!(buf && buf.length > 1)) {
@@ -80,14 +80,13 @@ module.exports = input => {
     return null;
 };
 
-module.exports.async = (fileName) => {
-    return new Promise(function(resolve, reject) {
-        const chunkPromise = readChunk(fileName, 0, 128);
-        chunkPromise.then(function(result) {
-            resolve(module.exports(result));
-        }, function(err) {
-            reject(err);
-        });
+module.exports.asyncCheck = fileName => new Promise((resolve, reject) => {
+    const chunkPromise = readChunk(fileName, 0, 128);
+    chunkPromise.then(result => {
+        resolve(module.exports.bufferCheck(result));
+    }, err => {
+        reject(err);
     });
-};
+});
 
+module.exports.syncCheck = fileName => module.exports.bufferCheck(readChunk.sync(fileName, 0, 128));

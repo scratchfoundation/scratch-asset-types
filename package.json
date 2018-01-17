@@ -15,7 +15,9 @@
     "babel-eslint": "^8.0.3",
     "eslint": "^4.13.1",
     "eslint-config-scratch": "^5.0.0",
-    "read-chunk": "^2.1.0",
     "tap": "^11.0.0"
+  },
+  "dependencies": {
+    "read-chunk": "^2.1.0"
   }
 }
