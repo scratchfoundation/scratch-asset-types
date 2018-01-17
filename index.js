@@ -1,6 +1,7 @@
 // Derived from file-type npm module
 
 const typesList = require('./lib/typeslist');
+const readChunk = require('read-chunk');
 
 module.exports = input => {
     const buf = (input instanceof Uint8Array) ? input : new Uint8Array(input);
@@ -78,3 +79,15 @@ module.exports = input => {
 
     return null;
 };
+
+module.exports.async = (fileName) => {
+    return new Promise(function(resolve, reject) {
+        const chunkPromise = readChunk(fileName, 0, 128);
+        chunkPromise.then(function(result) {
+            resolve(module.exports(result));
+        }, function(err) {
+            reject(err);
+        });
+    });
+};
+
