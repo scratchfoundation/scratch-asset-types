@@ -32,7 +32,7 @@ const result = assetTypes.syncCheck('full/path/to/filename');
 Asynchronous check on a filename:
 ```javascript
 const assetTypes = require('scratch-asset-types');
-assetTypes.asyncCheck(someBuffer).then( ... );
+assetTypes.asyncCheck('full/path/to/filename').then( ... );
 ```
 
 There is no asynchronous check on a buffer as that would be highly inefficent.
