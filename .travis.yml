@@ -1,11 +1,14 @@
 language: node_js
-sudo: false
 node_js:
-  - "6"
-
-before_script:
-  - date --rfc-2822
-
-script:
-  - npm test
-
+  - 6
+  - node
+env:
+  - NODE_ENV=production
+sudo: false
+cache:
+  directories:
+    - node_modules
+install:
+  - npm --production=false install
+  - npm --production=false update
+  - npm --production=false prune
