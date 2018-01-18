@@ -1,4 +1,4 @@
-# scratch-asset-types
+# scratch-asset-types ![Build Status](https://travis-ci.org/LLK/scratch-asset-types.svg?branch=master)
 
 A library for detecting types for Scratch backend services that is optimized for the specific file types that Scratch services depend on.
 
