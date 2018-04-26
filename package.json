@@ -10,7 +10,7 @@
     "test": "make test"
   },
   "author": "Massachusetts Institute of Technology",
-  "license": "private",
+  "license": "MIT",
   "devDependencies": {
     "babel-eslint": "^8.0.3",
     "eslint": "^4.13.1",
