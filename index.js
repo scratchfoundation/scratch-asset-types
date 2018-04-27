@@ -16,7 +16,13 @@ module.exports.bufferCheck = input => {
         }, options);
 
         for (let i = 0; i < header.length; i++) {
-            if (header[i] !== buf[i + options.offset]) {
+            // If a bitmask is set
+            if (options.mask) {
+                // If header doesn't equal `buf` with bits masked off
+                if (header[i] !== (options.mask[i] & buf[i + options.offset])) {
+                    return false;
+                }
+            } else if (header[i] !== buf[i + options.offset]) {
                 return false;
             }
         }
@@ -49,6 +55,16 @@ module.exports.bufferCheck = input => {
     if (check([0x52, 0x49, 0x46, 0x46]) &&
         check([0x57, 0x41, 0x56, 0x45], {offset: 8})) {
         return typesList.wav;
+    }
+
+    // Check for MPEG header at different starting offsets
+    for (let start = 0; start < 2 && start < (buf.length - 16); start++) {
+        if (
+            check([0x49, 0x44, 0x33], {offset: start}) || // ID3 header
+            check([0xFF, 0xE2], {offset: start, mask: [0xFF, 0xE2]}) // MPEG 1 or 2 Layer 3 header
+        ) {
+            return typesList.mp3;
+        }
     }
 
     if (check([0x00, 0x00, 0x00, 0x0C, 0x6A, 0x50, 0x20,
