@@ -3,7 +3,7 @@ const fileType = require('../../index');
 const typesList = require('../../lib/typeslist');
 
 const checkList = [
-    'gif', 'jpg', 'json', 'png', 'svg', 'wav', 'webp', 'zip'];
+    'gif', 'jpg', 'json', 'mp3', 'png', 'svg', 'wav', 'webp', 'zip'];
 
 tap.test('check-types', t => {
     checkList.forEach(thisType => {
