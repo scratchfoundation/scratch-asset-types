@@ -3,6 +3,19 @@
 const typesList = require('./lib/typeslist');
 const readChunk = require('read-chunk');
 
+// Check if the file extension provided is in our
+// list of acceptable file formats.
+// acceptable, return true
+// not acceptable, return false
+module.exports.acceptableExtension = fileName => {
+    const pieces = fileName.split('.');
+    if (pieces && pieces.length > 1 && pieces[pieces.length - 1] in typesList) {
+        return true;
+    }
+
+    return false;
+};
+
 module.exports.bufferCheck = input => {
     const buf = (input instanceof Uint8Array) ? input : new Uint8Array(input);
 
@@ -29,6 +42,11 @@ module.exports.bufferCheck = input => {
 
         return true;
     };
+
+    // Starts with a <, assume SVG
+    if (check([0x3c])) {
+        return typesList.svg;
+    }
 
     if (check([0xFF, 0xD8, 0xFF])) {
         return typesList.jpg;

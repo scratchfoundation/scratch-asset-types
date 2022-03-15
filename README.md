@@ -17,6 +17,12 @@ If recognized, a JSON object will be returned of the form:
 
 Examples:
 
+Synchronous check on if a filename includes an acceptable extension:
+```javascript
+const assetTypes = require('scratch-asset-types');
+const result = assetTypes.acceptableExtension('filename');
+```
+
 Synchronous check on a buffer:
 ```javascript
 const assetTypes = require('scratch-asset-types');
