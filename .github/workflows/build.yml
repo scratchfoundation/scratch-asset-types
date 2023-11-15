@@ -1,0 +1,29 @@
+name: Test Scratch Asset Types 
+on:
+    workflow_dispatch: 
+    push:
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        env:
+            NODE_ENV: production
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v3
+              with:
+                cache: "npm"
+                node-version-file: '.nvmrc'
+            - name: Run NPM Commands
+              run:  |
+                npm --production=false install
+                npm --production=false update
+                npm --production=false prune
+            - name: Run Lint
+              run: |
+                npm run lint
+            - name: Run Tests
+              run: |
+                npm run test
+                
+
+            
