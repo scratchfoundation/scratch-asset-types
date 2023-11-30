@@ -15,9 +15,7 @@ jobs:
                 node-version-file: '.nvmrc'
             - name: Run NPM Commands
               run:  |
-                npm --production=false install
-                npm --production=false update
-                npm --production=false prune
+                npm ci
             - name: Run Lint
               run: |
                 npm run lint
