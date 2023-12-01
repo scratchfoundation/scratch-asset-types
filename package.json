@@ -4,20 +4,19 @@
   "description": "Data typing discovery and MIME content-type handling across all media types that the Scratch environment expects",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/LLK/scratch-asset-types.git"
+    "url": "git+ssh://git@github.com/scratchfoundation/scratch-asset-types.git"
   },
   "scripts": {
-    "test": "make test"
+    "test": "make test",
+    "lint": "make lint"
   },
   "author": "Massachusetts Institute of Technology",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "babel-eslint": "^8.0.3",
     "eslint": "^4.13.1",
     "eslint-config-scratch": "^5.0.0",
-    "tap": "^11.1.4"
-  },
-  "dependencies": {
+    "tap": "^11.1.4",
     "read-chunk": "^2.1.0"
   }
 }
