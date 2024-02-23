@@ -4,7 +4,7 @@
   "description": "Data typing discovery and MIME content-type handling across all media types that the Scratch environment expects",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/LLK/scratch-asset-types.git"
+    "url": "git+ssh://git@github.com/scratchfoundation/scratch-asset-types.git"
   },
   "scripts": {
     "test": "make test"
